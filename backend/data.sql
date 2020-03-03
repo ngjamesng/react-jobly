@@ -33,23 +33,12 @@ SET default_tablespace = '';
 
 SET default_with_oids = false;
 
---
--- Name: applications; Type: TABLE; Schema: public; Owner: joel
---
-
 CREATE TABLE public.applications (
     username text NOT NULL,
     job_id integer NOT NULL,
     state text NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
 );
-
-
-ALTER TABLE public.applications OWNER TO joel;
-
---
--- Name: companies; Type: TABLE; Schema: public; Owner: joel
---
 
 CREATE TABLE public.companies (
     handle text NOT NULL,
@@ -58,13 +47,6 @@ CREATE TABLE public.companies (
     description text,
     logo_url text
 );
-
-
-ALTER TABLE public.companies OWNER TO joel;
-
---
--- Name: jobs; Type: TABLE; Schema: public; Owner: joel
---
 
 CREATE TABLE public.jobs (
     id integer NOT NULL,
@@ -75,13 +57,6 @@ CREATE TABLE public.jobs (
     CONSTRAINT jobs_equity_check CHECK ((equity <= (1.0)::double precision))
 );
 
-
-ALTER TABLE public.jobs OWNER TO joel;
-
---
--- Name: jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: joel
---
-
 CREATE SEQUENCE public.jobs_id_seq
     AS integer
     START WITH 1
@@ -90,19 +65,12 @@ CREATE SEQUENCE public.jobs_id_seq
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public.jobs_id_seq OWNER TO joel;
-
 --
--- Name: jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: joel
+-- Name: jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public;
 --
 
 ALTER SEQUENCE public.jobs_id_seq OWNED BY public.jobs.id;
 
-
---
--- Name: users; Type: TABLE; Schema: public; Owner: joel
---
 
 CREATE TABLE public.users (
     username text NOT NULL,
@@ -114,18 +82,15 @@ CREATE TABLE public.users (
     is_admin boolean DEFAULT false NOT NULL
 );
 
-
-ALTER TABLE public.users OWNER TO joel;
-
 --
--- Name: jobs id; Type: DEFAULT; Schema: public; Owner: joel
+-- Name: jobs id; Type: DEFAULT; Schema: public;
 --
 
 ALTER TABLE ONLY public.jobs ALTER COLUMN id SET DEFAULT nextval('public.jobs_id_seq'::regclass);
 
 
 --
--- Data for Name: applications; Type: TABLE DATA; Schema: public; Owner: joel
+-- Data for Name: applications; Type: TABLE DATA; Schema: public
 --
 
 COPY public.applications (username, job_id, state, created_at) FROM stdin;
@@ -133,7 +98,7 @@ COPY public.applications (username, job_id, state, created_at) FROM stdin;
 
 
 --
--- Data for Name: companies; Type: TABLE DATA; Schema: public; Owner: joel
+-- Data for Name: companies; Type: TABLE DATA; Schema: public
 --
 
 COPY public.companies (handle, name, num_employees, description, logo_url) FROM stdin;
@@ -191,7 +156,7 @@ erickson-inc	Erickson Inc	267	Interesting environment owner beautiful school pol
 
 
 --
--- Data for Name: jobs; Type: TABLE DATA; Schema: public; Owner: joel
+-- Data for Name: jobs; Type: TABLE DATA; Schema: public;
 --
 
 COPY public.jobs (id, title, salary, equity, company_handle) FROM stdin;
@@ -399,7 +364,7 @@ COPY public.jobs (id, title, salary, equity, company_handle) FROM stdin;
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: joel
+-- Data for Name: users; Type: TABLE DATA; Schema: public;
 --
 
 COPY public.users (username, password, first_name, last_name, email, photo_url, is_admin) FROM stdin;
@@ -408,14 +373,14 @@ testuser	$2b$10$REv6t9K7EHqWCc76/SI37ODRvFfW/sPMflZpG9r4EdZPQt4QwwMf2	Joel	Burto
 
 
 --
--- Name: jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: joel
+-- Name: jobs_id_seq; Type: SEQUENCE SET; Schema: public;
 --
 
 SELECT pg_catalog.setval('public.jobs_id_seq', 2, true);
 
 
 --
--- Name: applications applications_pkey; Type: CONSTRAINT; Schema: public; Owner: joel
+-- Name: applications applications_pkey; Type: CONSTRAINT; Schema: public;
 --
 
 ALTER TABLE ONLY public.applications
@@ -423,7 +388,7 @@ ALTER TABLE ONLY public.applications
 
 
 --
--- Name: companies companies_name_key; Type: CONSTRAINT; Schema: public; Owner: joel
+-- Name: companies companies_name_key; Type: CONSTRAINT; Schema: public;
 --
 
 ALTER TABLE ONLY public.companies
@@ -431,7 +396,7 @@ ALTER TABLE ONLY public.companies
 
 
 --
--- Name: companies companies_pkey; Type: CONSTRAINT; Schema: public; Owner: joel
+-- Name: companies companies_pkey; Type: CONSTRAINT; Schema: public;
 --
 
 ALTER TABLE ONLY public.companies
@@ -439,7 +404,7 @@ ALTER TABLE ONLY public.companies
 
 
 --
--- Name: jobs jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: joel
+-- Name: jobs jobs_pkey; Type: CONSTRAINT; Schema: public;
 --
 
 ALTER TABLE ONLY public.jobs
@@ -447,7 +412,7 @@ ALTER TABLE ONLY public.jobs
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: joel
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public;
 --
 
 ALTER TABLE ONLY public.users
@@ -455,7 +420,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: applications applications_job_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: joel
+-- Name: applications applications_job_id_fkey; Type: FK CONSTRAINT; Schema: public;
 --
 
 ALTER TABLE ONLY public.applications
@@ -463,7 +428,7 @@ ALTER TABLE ONLY public.applications
 
 
 --
--- Name: applications applications_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: joel
+-- Name: applications applications_username_fkey; Type: FK CONSTRAINT; Schema: public;
 --
 
 ALTER TABLE ONLY public.applications
@@ -471,7 +436,7 @@ ALTER TABLE ONLY public.applications
 
 
 --
--- Name: jobs jobs_company_handle_fkey; Type: FK CONSTRAINT; Schema: public; Owner: joel
+-- Name: jobs jobs_company_handle_fkey; Type: FK CONSTRAINT; Schema: public;
 --
 
 ALTER TABLE ONLY public.jobs
