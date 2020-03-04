@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from "react-router-dom";
+
 import Companies from './Companies'
 import Company from './Company'
 import Jobs from './Jobs'
@@ -10,6 +11,7 @@ import NotFound from './NotFound'
 
 function Routes({setIsLoggedIn}) {
   
+
   return (
     <div>
       <Switch>
@@ -18,7 +20,7 @@ function Routes({setIsLoggedIn}) {
         <Route exact path="/companies/:handle"><Company /></Route>
         <Route exact path="/jobs"><Jobs /></Route>
         <Route exact path="/login"><Login setIsLoggedIn={setIsLoggedIn}/></Route>
-        <Route exact path="/profile"><Profile/></Route>
+        <Route exact path="/profile"><Profile /></Route>
         <Route><NotFound /></Route>
       </Switch>
     </div>

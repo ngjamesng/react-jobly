@@ -9,7 +9,6 @@ function CompanyCard({ company }) {
 
   // TODO: STYLE!
   const imgStyle = { width: "100px" }
-  // const cardStyle = { width: "100px" }
 
   const handleClick = () => {
     history.push(`/companies/${handle}`);

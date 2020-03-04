@@ -5,6 +5,7 @@ function Navigation({ isLoggedIn, setIsLoggedIn }) {
   
   const handleLogOut = () => {
     localStorage.removeItem("_token")
+    localStorage.removeItem("user")
     setIsLoggedIn(false)
   }
 

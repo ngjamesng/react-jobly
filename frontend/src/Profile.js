@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom'
+import UserContext from "./userContext";
 
-
-function Profile({ userInfo }) {
-  
-  const [formData, setFormData] = useState(userInfo);
+function Profile() {
+  const { user, setUser } = useContext(UserContext);
+  const [formData, setFormData] = useState(user);
   
   if (!localStorage._token) return <Redirect to="/login" />
 
@@ -22,7 +22,9 @@ function Profile({ userInfo }) {
   };
 
   const inputs = () => {
-    return Object.keys(userInfo).map(key => (
+    return Object.keys(user)
+    // .filter(key=> key !== "jobs")
+    .map(key => (
       <div key={key}>
         <label htmlFor={key}>{key}</label>
         <input
@@ -48,11 +50,3 @@ function Profile({ userInfo }) {
 
 export default Profile;
 
-Profile.defaultProps = {
-  userInfo: {
-    firstName: "firstName",
-    lastName: "lastName",
-    email: "email",
-    photoUrl: "photoUrl",
-  }
-}

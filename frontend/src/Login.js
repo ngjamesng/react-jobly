@@ -1,24 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import JoblyApi from "./JoblyApi";
 import { useHistory } from "react-router-dom";
+import UserContext from "./userContext";
 
+const INITIALFORMDATA = {
+  'username':"", 'password':"", 'first_name':"", 'last_name':"", 'email':""
+}
+function Login({ setIsLoggedIn }) {
 
-function Login({setIsLoggedIn}) {
-
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(INITIALFORMDATA);
   const [formType, setFormType] = useState('login')
   const history = useHistory();
-
-
+  const { user, setUser } = useContext(UserContext);
+  
   const handleSubmit = evt => {
     evt.preventDefault();
-    const getToken = async (formType) => {
+    const getUserAndToken = async (formType) => {
       const token = await JoblyApi[formType](formData);
-      localStorage.setItem('_token', token)
+      localStorage.setItem('_token', token);
+      const response = await JoblyApi.getUser(formData.username);
+      setUser(response);
+      console.log("USER", user);
+      localStorage.setItem('user', user);
+      
+
     }
-    getToken(formType);
-    setIsLoggedIn(true)
-    history.push("/")
+    getUserAndToken(formType);
+    setIsLoggedIn(true);
+
+
+    // async function getUser(username) {
+    // };
+    // getUser(formData.username);
+
+
+    history.push("/");
   };
 
   const handleChange = evt => {
@@ -35,11 +51,11 @@ function Login({setIsLoggedIn}) {
         <label htmlFor={key}>{key}</label>
         <input
           id={key}
-          type = {key === 'password' || key === 'email' ?  key : 'text'}
           name={key}
+          type={key === 'password' || key === 'email' ? key : 'text'}
           value={formData[key]}
           onChange={handleChange}
-        />
+          />
       </div>
     ))
   }
@@ -49,8 +65,8 @@ function Login({setIsLoggedIn}) {
       <div key={key}>
         <label htmlFor={key}>{key}</label>
         <input
-          id={key} 
-          type = {key === 'password' ?  'password' : 'text'}
+          id={key}
+          type={key === 'password' ? 'password' : 'text'}
           name={key}
           value={formData[key]}
           onChange={handleChange}
