@@ -7,7 +7,10 @@ function Companies() {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
-    const getCompanies = async () => setCompanies(await JoblyApi.getCompanies());
+    async function getCompanies() {
+      const c = await JoblyApi.getCompanies();
+      setCompanies(c);
+    }
     getCompanies();
   }, []);
 

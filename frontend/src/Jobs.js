@@ -7,7 +7,10 @@ function Jobs() {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    const getJobs = async () => setJobs(await JoblyApi.getJobs());
+    async function getJobs() {
+      const j = await JoblyApi.getJobs();
+      setJobs(j);
+    }
     getJobs();
   }, []);
 

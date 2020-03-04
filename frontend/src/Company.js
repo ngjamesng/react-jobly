@@ -5,8 +5,8 @@ import JoblyApi from "./JoblyApi";
 
 function Company() {
   const { handle } = useParams();
-  const [company, setCompany] = useState({});
-  const [jobs, setJobs] = useState([]);
+  const [company, setCompany] = useState({ jobs: [] });
+
   useEffect(() => {
     async function getCompany() {
       const c = await JoblyApi.getCompany(handle);
@@ -14,21 +14,12 @@ function Company() {
     }
     getCompany();
   }, [handle]);
-  
-  //NEED TO FILTER BY A SINGLE COMPANY
-  useEffect(() => {
-    async function getJobs() {
-      const j = await JoblyApi.getJobs();
-      setJobs(j);
-    }
-    getJobs();
-  }, []);
 
   const showJobs = () => (
-    jobs.map(job => (
+    company.jobs.map(job => (
       <JobCard key={job.id} job={job} />
     ))
-  )
+  );
 
   return (
 
