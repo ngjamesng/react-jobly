@@ -8,7 +8,6 @@ function Search({ search }) {
   const handleSubmit = evt => {
     evt.preventDefault();
     search({search: formData.term});
-    setFormData(INITIAL_STATE);
     
   };
 
