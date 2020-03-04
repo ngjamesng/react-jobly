@@ -1,3 +1,5 @@
+import axios from "axios";
+
 class JoblyApi {
   static async request(endpoint, paramsOrData = {}, verb = "get") {
     paramsOrData._token = ( // for now, hardcode token for "testing"
@@ -10,7 +12,7 @@ class JoblyApi {
     try {
       return (await axios({
         method: verb,
-        url: `http://localhost:3001/${endpoint}`,
+        url: `http://localhost:3000/${endpoint}`,
         [verb === "get" ? "params" : "data"]: paramsOrData
       })).data;
       // axios sends query string data via the "params" key,
@@ -26,8 +28,8 @@ class JoblyApi {
   }
 
   // COMPANY ROUTES *******************************
-  static async getCompanies() {
-    let res = await this.request(`companies`);
+  static async getCompanies(data) {
+    let res = await this.request(`companies`, data);
     return res.companies;
   }
 
@@ -53,8 +55,8 @@ class JoblyApi {
 
 
   // JOB ROUTES *******************************
-  static async getJobs() {
-    let res = await this.request(`jobs`);
+  static async getJobs(data) {
+    let res = await this.request(`jobs`, data);
     return res.jobs;
   }
 

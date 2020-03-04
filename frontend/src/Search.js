@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-function Search() {
+function Search({ search }) {
 
-  const INITIAL_STATE = { searchTerm: "" };
+  const INITIAL_STATE = { term: "" };
   const [formData, setFormData] = useState(INITIAL_STATE);
-
 
   const handleSubmit = evt => {
     evt.preventDefault();
+    search({search: formData.term});
     setFormData(INITIAL_STATE);
-    // do search function
+    
   };
 
   const handleChange = evt => {
@@ -22,11 +22,11 @@ function Search() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="searchTerm"></label>
+      <label htmlFor="term"></label>
       <input
-        id="searchTerm"
-        name="searchTerm"
-        value={formData.searchTerm}
+        id="term"
+        name="term"
+        value={formData.term}
         onChange={handleChange}
         placeholder="Enter search term..."
       />
