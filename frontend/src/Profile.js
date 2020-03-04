@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom'
+
 
 function Profile({ userInfo }) {
-
+  
   const [formData, setFormData] = useState(userInfo);
-
+  
+  if (!localStorage._token) return <Redirect to="/login" />
 
   const handleSubmit = evt => {
     evt.preventDefault();

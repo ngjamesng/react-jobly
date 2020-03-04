@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Search from './Search.js';
 import CompanyCard from './CompanyCard';
 import JoblyApi from "./JoblyApi";
+import { Redirect } from "react-router-dom";
+
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
@@ -14,9 +16,11 @@ function Companies() {
     getCompanies();
   }, []);
 
+  if (!localStorage._token) return <Redirect to="/login" />
+
   const showCompanies = () => (
     companies.map(company => (
-      <CompanyCard key={company.handle} company={company} />
+      <CompanyCard key={company.handle} company={company} companies={companies}/>
     ))
   )
 

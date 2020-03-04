@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
+import JoblyApi from "./JoblyApi";
+import { useHistory } from "react-router-dom";
 
-function Login() {
+
+function Login({setIsLoggedIn}) {
 
   const [formData, setFormData] = useState({});
   const [formType, setFormType] = useState('login')
+  const history = useHistory();
 
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    //if formtype === login, login
-    //if formtype === signup, signup
+    const getToken = async (formType) => {
+      const token = await JoblyApi[formType](formData);
+      localStorage.setItem('_token', token)
+    }
+    getToken(formType);
+    setIsLoggedIn(true)
+    history.push("/")
   };
 
   const handleChange = evt => {
@@ -21,11 +30,12 @@ function Login() {
   };
 
   const signUp = () => {
-    return ['username', 'password', 'firstName', 'lastName', 'email'].map(key => (
+    return ['username', 'password', 'first_name', 'last_name', 'email'].map(key => (
       <div key={key}>
         <label htmlFor={key}>{key}</label>
         <input
           id={key}
+          type = {key === 'password' || key === 'email' ?  key : 'text'}
           name={key}
           value={formData[key]}
           onChange={handleChange}
@@ -39,7 +49,8 @@ function Login() {
       <div key={key}>
         <label htmlFor={key}>{key}</label>
         <input
-          id={key}
+          id={key} 
+          type = {key === 'password' ?  'password' : 'text'}
           name={key}
           value={formData[key]}
           onChange={handleChange}
@@ -65,8 +76,8 @@ export default Login;
 
 Login.defaultProps = {
   userInfo: {
-    firstName: "firstName",
-    lastName: "lastName",
+    first_name: "first_name",
+    last_name: "last_name",
     email: "email",
     photoUrl: "photoUrl",
   }

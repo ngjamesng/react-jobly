@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import JobCard from './JobCard';
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import JoblyApi from "./JoblyApi";
+import NotFound from "./NotFound";
 
 function Company() {
   const { handle } = useParams();
   const [company, setCompany] = useState({ jobs: [] });
+
 
   useEffect(() => {
     async function getCompany() {
@@ -13,7 +15,10 @@ function Company() {
       setCompany(c);
     }
     getCompany();
+
   }, [handle]);
+
+  if (!localStorage._token) return <Redirect to="/login" />
 
   const showJobs = () => (
     company.jobs.map(job => (
@@ -21,13 +26,17 @@ function Company() {
     ))
   );
 
-  return (
 
-    <div>
-      <h5>{company.name}</h5>
-      <p>{company.description}</p>
-      {showJobs()}
-    </div>
+  return (
+    (!company.handle)
+      ? <NotFound />
+      : (
+        <div>
+          <h5>{company.name}</h5>
+          <p>{company.description}</p>
+          {showJobs()}
+        </div>
+      )
   );
 }
 
