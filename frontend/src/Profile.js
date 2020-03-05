@@ -5,7 +5,7 @@ import JoblyApi from "./JoblyApi";
 import "./Profile.css";
 
 function Profile() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const formUser = { ...user }
   delete formUser.username
   delete formUser.jobs
@@ -22,6 +22,7 @@ function Profile() {
       try{
         const updatedUser = await JoblyApi.patchUser(user.username, formData)
         setFormData(updatedUser)
+        setUser(updatedUser)
         localStorage.setItem('user', JSON.stringify(updatedUser));
         setAlert({color: "success", msg: "You have successfully updated your profile."})
         setTimeout(()=>setAlert(null), 2000)
