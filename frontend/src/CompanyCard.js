@@ -1,24 +1,23 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-
+import "./CompanyCard.css";
 // {handle, name, description, logo_url} 
 function CompanyCard({ company }) {
   const { handle, name, description, logo_url } = company
   const history = useHistory();
-
-  // TODO: STYLE!
-  const imgStyle = { width: "100px" }
 
   const handleClick = () => {
     history.push(`/companies/${handle}`);
   }
 
   return (
-    <div onClick={handleClick} className="card" >
-      <img src={logo_url} alt={name} style={imgStyle} className="card-img-top"/>
-      <h5>{name}</h5>
+    <section onClick={handleClick} className="card CompanyCard" >
+      <div className="CompanyCard-NameImg">
+        <h5>{name}</h5>
+        <img src={logo_url} alt={name} className="card-img-top Company-Img" />
+      </div>
       <p>{description}</p>
-    </div>
+    </section>
   );
 }
 

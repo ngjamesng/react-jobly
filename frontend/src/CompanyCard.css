@@ -1,0 +1,13 @@
+.CompanyCard {
+  margin: 20px 0px;
+  padding: 5px
+}
+
+.CompanyCard-NameImg {
+  display:flex; 
+  justify-content:space-between
+}
+
+.Company-Img {
+  width:100px
+}

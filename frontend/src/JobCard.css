@@ -1,0 +1,6 @@
+.JobCard { 
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin:20px 0px
+}
