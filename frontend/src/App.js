@@ -12,7 +12,7 @@ function App() {
   const [user, setUser] = useState(userFromLS);
 
   return (
-    <div>
+    <div className='App'>
       <BrowserRouter>
         <UserContext.Provider value={{user, setUser}}>
           <Navigation />
