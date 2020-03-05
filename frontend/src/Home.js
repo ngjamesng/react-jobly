@@ -1,9 +1,16 @@
 import React, { useContext } from 'react';
 import UserContext from "./userContext";
+import { useHistory } from "react-router-dom";
+
 import "./Home.css"
 
 function Home() {
   const { user } = useContext(UserContext);
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/login")
+  }
 
   return (
     <div className='jumbotron home'>
@@ -12,7 +19,7 @@ function Home() {
         <p className='lead'>All the jobs in one, convenient place</p>
         {user
           ? <p className='lead'>Welcome Back!</p>
-          : <a className="btn btn-primary btn-lg" href="#" role="button">Log In</a>
+          : <button className="btn btn-primary btn-lg" onClick={handleClick}>Log In</button>
         }
       </div>
     </div>

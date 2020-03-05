@@ -13,7 +13,7 @@ function Login() {
   const history = useHistory();
   const { setUser } = useContext(UserContext);
   
-  const handleSubmit = async(evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     const getUserAndToken = async (formType) => {
       const token = await JoblyApi[formType](formData);
