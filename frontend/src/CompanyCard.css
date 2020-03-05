@@ -8,12 +8,21 @@
   cursor: pointer;
 
 }
+.CompanyCard-Name {
+  padding-left: 15px;
+  margin-top: 25px;
+}
+
+.CompanyCard-Description{
+  padding-left: 20px
+}
 
 .CompanyCard-NameImg {
   display:flex; 
-  justify-content:space-between
+  justify-content:space-between;
+  padding: 5px;
 }
 
 .Company-Img {
-  max-width:100px
+  max-width:70px
 }

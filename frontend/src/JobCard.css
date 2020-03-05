@@ -2,5 +2,21 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  margin:20px 0px
+  margin:20px 0px;
+}
+
+.JobCard-Info{
+}
+
+.JobCard-Button{
+}
+
+.JobCard-Title {
+  padding-left: 15px;
+  margin-top: 25px;
+}
+
+.JobCard-Description{
+  margin-left: 20px;
+  margin-top: 20px;
 }

@@ -11,7 +11,6 @@ function Companies() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    console.log('this component is mounting');
     async function getCompanies() {
       const c = await JoblyApi.getCompanies();
       setCompanies(c);

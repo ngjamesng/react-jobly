@@ -6,15 +6,18 @@ function JobCard({ job, handleApply }) {
 
   return (
     <section className="card JobCard">
-      <div>
-        <h5>{title}</h5>
-        <p>Salary: ${addCommas(salary)}</p>
-        <p>Equity: {equity * 100}%</p>
-      </div>
-      <div style={{ alignSelf: "flex-end" }}>
-        {!state
-          ? <button className="btn btn-danger" onClick={() => handleApply(id)}>Apply</button>
-          : <button className="btn  btn-secondary" disabled>Applied</button>}
+      <div className="JobCard-Info">
+        <h5 className="JobCard-Title">{title}</h5>
+        <div className="JobCard-Description">
+          <p>Salary: ${addCommas(salary)}</p>
+          <p>Equity: {equity * 100}%</p>
+        </div>
+        <div className="JobCard-Button">
+          {!state
+            ? <button className="btn btn-danger" onClick={() => handleApply(id)}>Apply</button>
+            : <button className="btn  btn-secondary" disabled>Applied</button>
+          }
+        </div>
       </div>
     </section>
   );
