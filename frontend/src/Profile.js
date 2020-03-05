@@ -10,6 +10,8 @@ function Profile() {
   delete formUser.username
   delete formUser.jobs
   const [formData, setFormData] = useState(formUser);
+  const [alert, setAlert] = useState()
+
 
   if (!user) return <Redirect to="/login" />
 
@@ -17,9 +19,16 @@ function Profile() {
     evt.preventDefault();
     const patchUser = async () => {
       formData.photo_url = formData.photo_url || "http://somedefault.photo"
-      const updatedUser = await JoblyApi.patchUser(user.username, formData)
-      setFormData(updatedUser)
-      localStorage.setItem('user', JSON.stringify(updatedUser));
+      try{
+        const updatedUser = await JoblyApi.patchUser(user.username, formData)
+        setFormData(updatedUser)
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        setAlert({color: "success", msg: "You have successfully updated your profile."})
+        setTimeout(()=>setAlert(null), 2000)
+      } catch {
+        setAlert({color: "danger", msg: "Invalid credentials."})
+        setTimeout(()=>setAlert(null), 2000)
+      }
     }
     patchUser()
   };
@@ -50,26 +59,36 @@ function Profile() {
       ))
   }
 
+  const showAlert = (color, msg) => (
+    <div class={`alert alert-${color}`}>
+      {msg}
+    </div>
+  )
+
   return (
-      <div className="container">
-        <form onSubmit={handleSubmit} className="Profile-Form">
+    <div className="container">
+      <form onSubmit={handleSubmit} className="Profile-Form">
         <h1>Profile for {user.username}</h1>
-          {inputs()}
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="form-control"
-              placeholder="Enter password to save changes."
-            />
-          </div>
-          <button>Save Changes</button>
-        </form>
-      </div>
+        {inputs()}
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Enter password to save changes."
+          />
+        </div>
+        {alert
+        ? showAlert(alert.color,alert.msg)
+        : null
+        }
+        <button>Save Changes</button>
+      </form>
+    </div>
   );
 }
 

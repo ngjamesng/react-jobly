@@ -10,8 +10,8 @@ function Login() {
 
   const [formData, setFormData] = useState(INITIALFORMDATA);
   const [formType, setFormType] = useState('login')
-  const history = useHistory();
   const { setUser } = useContext(UserContext);
+  const history = useHistory();
   
   const handleSubmit = async (evt) => {
     evt.preventDefault();
