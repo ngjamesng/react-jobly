@@ -11,3 +11,9 @@
 .Company-Img {
   width:100px
 }
+
+.CompanyCard:hover {
+  color: #007BFF;
+  cursor: pointer;
+
+}
