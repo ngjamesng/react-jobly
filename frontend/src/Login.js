@@ -6,7 +6,7 @@ import UserContext from "./userContext";
 const INITIALFORMDATA = {
   'username':"", 'password':"", 'first_name':"", 'last_name':"", 'email':""
 }
-function Login({ setIsLoggedIn }) {
+function Login() {
 
   const [formData, setFormData] = useState(INITIALFORMDATA);
   const [formType, setFormType] = useState('login')
@@ -23,7 +23,6 @@ function Login({ setIsLoggedIn }) {
       localStorage.setItem('user', JSON.stringify(response));
     }
     getUserAndToken(formType);
-    setIsLoggedIn(true);
     history.push("/");
   };
 

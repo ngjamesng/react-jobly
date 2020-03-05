@@ -3,30 +3,30 @@ import { NavLink } from 'react-router-dom'
 import UserContext from "./userContext";
 
 
-function Navigation({ setIsLoggedIn }) {
+function Navigation() {
 
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   
   const handleLogOut = () => {
     localStorage.removeItem("_token")
     localStorage.removeItem("user")
-    setIsLoggedIn(false)
+    setUser(null);
   }
 
   const showNavLinks = () => (
     (user) 
-      ? <div>
-          <NavLink exact to="/companies">Companies</NavLink>
-          <NavLink exact to="/jobs">Jobs</NavLink>
-          <NavLink exact to="/profile">Profile</NavLink>
-          <button onClick={handleLogOut}>Log Out</button>
+      ? <div style={{display:"flex"}}>
+          <NavLink className="nav-link" exact to="/companies">Companies</NavLink>
+          <NavLink className="nav-link" exact to="/jobs">Jobs</NavLink>
+          <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
+          <NavLink className="nav-link" to="/login" onClick={handleLogOut}>Log Out</NavLink>
         </div>
-      : <NavLink exact to="/login">Log In</NavLink>
+      : <NavLink className="nav-link" exact to="/login">Log In</NavLink>
   )
 
   return (
-    <nav className="navbar">
-      <NavLink exact to="/">Jobly</NavLink>
+    <nav className="navbar navbar-light bg-light">
+      <NavLink className="nav-link" exact to="/">Jobly</NavLink>
       {showNavLinks()}
     </nav>
   );

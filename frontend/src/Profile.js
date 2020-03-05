@@ -5,7 +5,7 @@ import JoblyApi from "./JoblyApi"
 
 function Profile() {
   const { user } = useContext(UserContext);
-  const formUser = {...user}
+  const formUser = { ...user }
   delete formUser.username
   delete formUser.jobs
   const [formData, setFormData] = useState(formUser);
@@ -33,32 +33,39 @@ function Profile() {
 
   const inputs = () => {
     return Object.keys(formUser)
-    .map(key => (
-      <div key={key}>
-        <label htmlFor={key}>{key}</label>
-        <input
-          id={key}
-          name={key}
-          value={formData[key]}
-          onChange={handleChange}
-        />
-      </div>
-    ))
+      .map(key => (
+        <div key={key} className="form-group">
+          <label htmlFor={key} style={{ textTransform: "capitalize" }}>
+            {key.split("_").join(" ")}
+          </label>
+          <input
+            id={key}
+            name={key}
+            value={formData[key]}
+            onChange={handleChange}
+            className="form-control"
+          />
+        </div>
+      ))
   }
 
   return (
-    <div>
-      <h1>Profile</h1>
+    <div className="container">
+      <h1>Profile for {user.username}</h1>
       <form onSubmit={handleSubmit}>
         {inputs()}
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Enter password to save changes."
+          />
+        </div>
         <button>Save Changes</button>
       </form>
     </div>

@@ -9,7 +9,7 @@ import Login from './Login'
 import Profile from './Profile'
 import NotFound from './NotFound'
 
-function Routes({setIsLoggedIn}) {
+function Routes() {
   
 
   return (
@@ -19,7 +19,7 @@ function Routes({setIsLoggedIn}) {
         <Route exact path="/companies"><Companies /></Route>
         <Route exact path="/companies/:handle"><Company /></Route>
         <Route exact path="/jobs"><Jobs /></Route>
-        <Route exact path="/login"><Login setIsLoggedIn={setIsLoggedIn}/></Route>
+        <Route exact path="/login"><Login /></Route>
         <Route exact path="/profile"><Profile /></Route>
         <Route><NotFound /></Route>
       </Switch>

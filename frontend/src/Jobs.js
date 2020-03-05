@@ -44,7 +44,7 @@ function Jobs() {
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>List of Jobs</h1>
       <Search search={search} />
       {showJobs()}

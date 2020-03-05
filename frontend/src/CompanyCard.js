@@ -14,9 +14,9 @@ function CompanyCard({ company }) {
   }
 
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} className="card" >
+      <img src={logo_url} alt={name} style={imgStyle} className="card-img-top"/>
       <h5>{name}</h5>
-      <img src={logo_url} alt={name} style={imgStyle} />
       <p>{description}</p>
     </div>
   );

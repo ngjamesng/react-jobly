@@ -7,8 +7,8 @@ function Search({ search }) {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    search({search: formData.term});
-    
+    search({ search: formData.term });
+
   };
 
   const handleChange = evt => {
@@ -20,7 +20,8 @@ function Search({ search }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form-inline">
+      <div class="form-group mb-2">
       <label htmlFor="term"></label>
       <input
         id="term"
@@ -28,9 +29,11 @@ function Search({ search }) {
         value={formData.term}
         onChange={handleChange}
         placeholder="Enter search term..."
+        className="form-control"
       />
-      <button>Search</button>
-    </form>
+      </div>
+    <button className="btn btn-primary mb-2">Search</button>
+    </form >
   );
 }
 

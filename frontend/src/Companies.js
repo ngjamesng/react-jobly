@@ -30,7 +30,7 @@ function Companies() {
     setCompanies(await JoblyApi.getCompanies(term));
   }
   return (
-    <div>
+    <div className="container">
       <h1>List of Companies</h1>
       <Search search={search}/>
       {showCompanies()}
