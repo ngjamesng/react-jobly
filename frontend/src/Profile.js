@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom'
 import UserContext from "./userContext";
-import JoblyApi from "./JoblyApi"
+import JoblyApi from "./JoblyApi";
+import "./Profile.css";
 
 function Profile() {
   const { user } = useContext(UserContext);
@@ -50,25 +51,25 @@ function Profile() {
   }
 
   return (
-    <div className="container">
-      <h1>Profile for {user.username}</h1>
-      <form onSubmit={handleSubmit}>
-        {inputs()}
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Enter password to save changes."
-          />
-        </div>
-        <button>Save Changes</button>
-      </form>
-    </div>
+      <div className="container">
+        <form onSubmit={handleSubmit} className="Profile-Form">
+        <h1>Profile for {user.username}</h1>
+          {inputs()}
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="form-control"
+              placeholder="Enter password to save changes."
+            />
+          </div>
+          <button>Save Changes</button>
+        </form>
+      </div>
   );
 }
 
