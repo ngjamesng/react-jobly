@@ -1,0 +1,8 @@
+.home {
+  text-align: center;
+  background: transparent !important;
+  display: flex;
+  align-items: center;
+  min-height: 80%;
+  min-height: 80vh;
+}
