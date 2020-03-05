@@ -19,7 +19,7 @@ function Navigation() {
           <NavLink className="nav-link" exact to="/companies">Companies</NavLink>
           <NavLink className="nav-link" exact to="/jobs">Jobs</NavLink>
           <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
-          <NavLink className="nav-link" to="/ " onClick={handleLogOut}>Log Out</NavLink>
+          <NavLink className="nav-link" to="/" onClick={handleLogOut}>Log Out</NavLink>
         </div>
       : <NavLink className="nav-link" exact to="/login">Log In</NavLink>
   )
