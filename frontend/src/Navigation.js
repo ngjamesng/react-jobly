@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import { NavLink } from 'react-router-dom'
 import UserContext from "./userContext";
+import "./navigation.css"
 
 
 function Navigation() {
@@ -15,7 +16,7 @@ function Navigation() {
 
   const showNavLinks = () => (
     (user) 
-      ? <div style={{display:"flex"}}>
+      ? <div className="navigation-container">
           <NavLink className="nav-link" exact to="/companies">Companies</NavLink>
           <NavLink className="nav-link" exact to="/jobs">Jobs</NavLink>
           <NavLink className="nav-link" exact to="/profile">Profile</NavLink>
@@ -25,7 +26,7 @@ function Navigation() {
   )
 
   return (
-    <nav className="navbar navbar-light bg-light bg-white">
+    <nav className="navbar navbar-light bg-light bg-white navigation-container">
       <NavLink className="nav-link" exact to="/">Jobly</NavLink>
       {showNavLinks()}
     </nav>

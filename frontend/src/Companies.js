@@ -32,7 +32,7 @@ function Companies() {
   }
   return (
     <div className="container">
-      <h1>List of Companies</h1>
+      <h3>List of Companies</h3>
       <Search search={search}/>
       {companies.length
       ? <div>{showCompanies()}</div>

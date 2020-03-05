@@ -45,7 +45,7 @@ function Jobs() {
 
   return (
     <div className="container">
-      <h1>List of Jobs</h1>
+      <h3>List of Jobs</h3>
       <Search search={search}/>
       {jobs.length
       ? <div>{showJobs()}</div>
