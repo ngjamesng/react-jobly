@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { NavLink } from 'react-router-dom'
+import UserContext from "./userContext";
 
-function Navigation({ isLoggedIn, setIsLoggedIn }) {
+
+function Navigation({ setIsLoggedIn }) {
+
+  const { user } = useContext(UserContext);
   
   const handleLogOut = () => {
     localStorage.removeItem("_token")
@@ -10,7 +14,7 @@ function Navigation({ isLoggedIn, setIsLoggedIn }) {
   }
 
   const showNavLinks = () => (
-    (isLoggedIn) 
+    (user) 
       ? <div>
           <NavLink exact to="/companies">Companies</NavLink>
           <NavLink exact to="/jobs">Jobs</NavLink>

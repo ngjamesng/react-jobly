@@ -11,7 +11,7 @@ function Login({ setIsLoggedIn }) {
   const [formData, setFormData] = useState(INITIALFORMDATA);
   const [formType, setFormType] = useState('login')
   const history = useHistory();
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -20,20 +20,10 @@ function Login({ setIsLoggedIn }) {
       localStorage.setItem('_token', token);
       const response = await JoblyApi.getUser(formData.username);
       setUser(response);
-      console.log("USER", user);
-      localStorage.setItem('user', user);
-      
-
+      localStorage.setItem('user', JSON.stringify(response));
     }
     getUserAndToken(formType);
     setIsLoggedIn(true);
-
-
-    // async function getUser(username) {
-    // };
-    // getUser(formData.username);
-
-
     history.push("/");
   };
 

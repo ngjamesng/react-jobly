@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Search from './Search.js';
 import CompanyCard from './CompanyCard';
 import JoblyApi from "./JoblyApi";
 import { Redirect } from "react-router-dom";
+import UserContext from "./userContext";
 
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     async function getCompanies() {
@@ -16,7 +18,7 @@ function Companies() {
     getCompanies();
   }, []);
 
-  if (!localStorage._token) return <Redirect to="/login" />
+  if (!user) return <Redirect to="/login" />
 
   const showCompanies = () => (
     companies.map(company => (

@@ -1,16 +1,26 @@
 import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom'
 import UserContext from "./userContext";
+import JoblyApi from "./JoblyApi"
 
 function Profile() {
-  const { user, setUser } = useContext(UserContext);
-  const [formData, setFormData] = useState(user);
-  
-  if (!localStorage._token) return <Redirect to="/login" />
+  const { user } = useContext(UserContext);
+  const formUser = {...user}
+  delete formUser.username
+  delete formUser.jobs
+  const [formData, setFormData] = useState(formUser);
+
+  if (!user) return <Redirect to="/login" />
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    // do search function
+    const patchUser = async () => {
+      formData.photo_url = formData.photo_url || "http://somedefault.photo"
+      const updatedUser = await JoblyApi.patchUser(user.username, formData)
+      setFormData(updatedUser)
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+    }
+    patchUser()
   };
 
   const handleChange = evt => {
@@ -22,8 +32,7 @@ function Profile() {
   };
 
   const inputs = () => {
-    return Object.keys(user)
-    // .filter(key=> key !== "jobs")
+    return Object.keys(formUser)
     .map(key => (
       <div key={key}>
         <label htmlFor={key}>{key}</label>
@@ -42,6 +51,14 @@ function Profile() {
       <h1>Profile</h1>
       <form onSubmit={handleSubmit}>
         {inputs()}
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          value={formData.password}
+          onChange={handleChange}
+        />
         <button>Save Changes</button>
       </form>
     </div>

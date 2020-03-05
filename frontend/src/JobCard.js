@@ -1,8 +1,7 @@
 import React from 'react';
 
-function JobCard({ job }) {
-  const {title, company_handle, salary, equity, state} = job;
-  // TODO: HANDLE APPLY STATE/API CALL
+function JobCard({ job, handleApply }) {
+  const {id, title, salary, equity, state} = job;
   
   return (
     <div>
@@ -10,7 +9,7 @@ function JobCard({ job }) {
       <p>salary: {salary}</p>
       <p>equity: {equity}</p>
       {!state 
-      ? <button>Apply</button> 
+      ? <button onClick={()=>handleApply(id)}>Apply</button> 
       : <button disabled>Applied</button>}
     </div>
   );

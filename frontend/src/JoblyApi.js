@@ -82,6 +82,11 @@ class JoblyApi {
     return res.message;
   }
 
+  static async applyToJob(id, data){
+    let res = await this.request(`jobs/${id}/apply`, data, "post");
+    return res.message
+  }
+
 
   // USER ROUTES *******************************
   static async getUsers() {

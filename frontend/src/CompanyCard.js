@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import Company from './Company';
 
 // {handle, name, description, logo_url} 
 function CompanyCard({ company }) {
