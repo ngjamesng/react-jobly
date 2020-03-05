@@ -46,10 +46,14 @@ function Jobs() {
   return (
     <div className="container">
       <h1>List of Jobs</h1>
-      <Search search={search} />
-      {showJobs()}
+      <Search search={search}/>
+      {jobs.length
+      ? <div>{showJobs()}</div>
+      : <h5>Sorry, no results were found.</h5>
+      }
     </div>
   );
 }
+
 
 export default Jobs;

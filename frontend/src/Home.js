@@ -18,7 +18,7 @@ function Home() {
         <h1 className='display-4'>Jobly</h1>
         <p className='lead'>All the jobs in one, convenient place</p>
         {user
-          ? <p className='lead'>Welcome Back!</p>
+          ? <p className='lead'>Welcome Back {user.first_name} {user.last_name}!</p>
           : <button className="btn btn-primary btn-lg" onClick={handleClick}>Log In</button>
         }
       </div>

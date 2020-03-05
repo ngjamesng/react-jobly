@@ -11,6 +11,7 @@ function Companies() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
+    console.log('this component is mounting');
     async function getCompanies() {
       const c = await JoblyApi.getCompanies();
       setCompanies(c);
@@ -33,7 +34,10 @@ function Companies() {
     <div className="container">
       <h1>List of Companies</h1>
       <Search search={search}/>
-      {showCompanies()}
+      {companies.length
+      ? <div>{showCompanies()}</div>
+      : <h5>Sorry, no results were found.</h5>
+      }
     </div>
   );
 }
