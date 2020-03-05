@@ -13,7 +13,7 @@ function Login() {
   const history = useHistory();
   const { setUser } = useContext(UserContext);
   
-  const handleSubmit = evt => {
+  const handleSubmit = async(evt) => {
     evt.preventDefault();
     const getUserAndToken = async (formType) => {
       const token = await JoblyApi[formType](formData);
@@ -22,7 +22,7 @@ function Login() {
       setUser(response);
       localStorage.setItem('user', JSON.stringify(response));
     }
-    getUserAndToken(formType);
+    await getUserAndToken(formType);
     history.push("/");
   };
 
