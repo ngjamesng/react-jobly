@@ -7,8 +7,8 @@ function JobCard({ job, handleApply }) {
   return (
     <section className="card JobCard">
       <div className="JobCard-Info">
-        <h5 className="JobCard-Title">{title}</h5>
         <div className="JobCard-Description">
+        <h5 className="JobCard-Title">{title}</h5>
           <p>Salary: ${addCommas(salary)}</p>
           <p>Equity: {equity * 100}%</p>
         </div>

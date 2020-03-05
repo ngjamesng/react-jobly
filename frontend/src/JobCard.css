@@ -6,14 +6,16 @@
 }
 
 .JobCard-Info{
+  display:flex;
+  justify-content: space-between;
 }
 
 .JobCard-Button{
+  align-self: flex-end;
 }
 
 .JobCard-Title {
-  padding-left: 15px;
-  margin-top: 25px;
+margin-bottom: 10px;
 }
 
 .JobCard-Description{
