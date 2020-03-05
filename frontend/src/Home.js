@@ -6,10 +6,6 @@ function Home() {
   const { user } = useContext(UserContext);
 
   return (
-    // <div className="container home">
-    //   <h1 className="">Home Page</h1>
-    //   <p>All the jobs in one, convenient place</p>
-    // </div>
     <div className='jumbotron home'>
       <div className="container">
         <h1 className='display-4'>Jobly</h1>
