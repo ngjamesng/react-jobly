@@ -2,20 +2,20 @@ import axios from "axios";
 
 class JoblyApi {
   static async request(endpoint, paramsOrData = {}, verb = "get") {
-    const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+    const BASE_URL= process.env.REACT_APP_BASE_URL || "http://localhost:3000/"
     paramsOrData._token = localStorage.getItem('_token');
 
     // // for now, hardcode token for "testing"
-    // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc" +
-    // "3RpbmciLCJpc19hZG1pbiI6ZmFsc2UsImlhdCI6MTU1MzcwMzE1M30." +
-    // "COmFETEsTxN_VfIlgIKw0bYJLkvbRQNgO1XCSE8NZ0U"
+      // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc" +
+      // "3RpbmciLCJpc19hZG1pbiI6ZmFsc2UsImlhdCI6MTU1MzcwMzE1M30." +
+      // "COmFETEsTxN_VfIlgIKw0bYJLkvbRQNgO1XCSE8NZ0U"
 
     console.debug("API Call:", endpoint, paramsOrData, verb);
 
     try {
       return (await axios({
         method: verb,
-        url: `${BASE_URL}/${endpoint}`,
+        url: `${BASE_URL}${endpoint}`,
         [verb === "get" ? "params" : "data"]: paramsOrData
       })).data;
       // axios sends query string data via the "params" key,
@@ -83,7 +83,7 @@ class JoblyApi {
     return res.message;
   }
 
-  static async applyToJob(id, data) {
+  static async applyToJob(id, data){
     let res = await this.request(`jobs/${id}/apply`, data, "post");
     return res.message
   }
