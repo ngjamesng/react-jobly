@@ -87,7 +87,7 @@ function Profile() {
         ? showAlert(alert.color,alert.msg)
         : null
         }
-        <button>Save Changes</button>
+        <button className="btn btn-primary">Save Changes</button>
       </form>
     </div>
   );

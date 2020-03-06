@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./Search.css"
 
 function Search({ search }) {
 
@@ -21,7 +22,6 @@ function Search({ search }) {
 
   return (
     <form onSubmit={handleSubmit} className="form-inline">
-      <div class="form-group mb-2">
       <label htmlFor="term"></label>
       <input
         id="term"
@@ -29,10 +29,9 @@ function Search({ search }) {
         value={formData.term}
         onChange={handleChange}
         placeholder="Enter search term..."
-        className="form-control"
+        className="form-control form-control-lg flex-grow-1"
       />
-      </div>
-    <button className="btn btn-primary mb-2">Search</button>
+      <button className="btn btn-primary btn-lg">Search</button>
     </form >
   );
 }
