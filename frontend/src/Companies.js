@@ -31,7 +31,7 @@ function Companies() {
   }
   return (
     <div className="container">
-      <h3>List of Companies</h3>
+    <h2 style={{margin: "30px auto"}}>List of Companies</h2>
       <Search search={search}/>
       {companies.length
       ? <div>{showCompanies()}</div>

@@ -15,7 +15,7 @@ function Home() {
   return (
     <div className='jumbotron home'>
       <div className="container">
-        <h1 className='display-4'>Jobly</h1>
+        <h1 className='display-3'>Jobly</h1>
         <p className='lead'>All the jobs in one, convenient place</p>
         {user
           ? <p className='lead'>Welcome back, {user.first_name} {user.last_name}!</p>

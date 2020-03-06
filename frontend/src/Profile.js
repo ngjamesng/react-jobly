@@ -69,7 +69,7 @@ function Profile() {
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="Profile-Form">
-        <h1>Profile for {user.username}</h1>
+        <h2 style={{margin: "15px auto"}}>Profile for {user.username}</h2>
         {inputs()}
         <div className="form-group">
           <label htmlFor="password">Password</label>

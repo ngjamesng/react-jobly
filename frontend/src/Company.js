@@ -34,8 +34,8 @@ function Company() {
     (!company.handle)
       ? <NotFound />
       : (
-        <div>
-          <h5>{company.name}</h5>
+        <div className="container">
+          <h2 style={{margin: "30px auto"}}>{company.name}</h2>
           <p>{company.description}</p>
           {showJobs()}
         </div>

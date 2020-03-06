@@ -45,7 +45,7 @@ function Jobs() {
 
   return (
     <div className="container">
-      <h3>List of Jobs</h3>
+      <h2 style={{margin: "30px auto"}}>List of Jobs</h2>
       <Search search={search}/>
       {jobs.length
       ? <div>{showJobs()}</div>
