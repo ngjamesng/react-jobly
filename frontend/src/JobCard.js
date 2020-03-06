@@ -10,7 +10,7 @@ function JobCard({ job, handleApply }) {
         <div className="JobCard-Description">
         <h5 className="JobCard-Title">{title}</h5>
           <p>Salary: ${addCommas(salary)}</p>
-          <p>Equity: {equity * 100}%</p>
+          <p>Equity: {Math.floor(equity * 100)}%</p>
         </div>
         <div className="JobCard-Button">
           {!state
