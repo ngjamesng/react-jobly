@@ -17,7 +17,9 @@ const usersRoutes = require("./routes/users");
 const companiesRoutes = require("./routes/companies");
 const jobsRoutes = require("./routes/jobs");
 const authRoutes = require("./routes/auth");
+const cronRoutes = require("./routes/cron");
 
+app.use("/cron", cronRoutes);
 app.use("/companies", companiesRoutes);
 app.use("/jobs", jobsRoutes);
 app.use("/users", usersRoutes);
