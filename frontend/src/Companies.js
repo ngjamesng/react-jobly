@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Search from './Search.js';
 import CompanyCard from './CompanyCard';
+import SkeletonCards from "./SkeletonCards";
 import JoblyApi from "./JoblyApi";
 import { Redirect } from "react-router-dom";
 import UserContext from "./userContext";
-
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
@@ -35,7 +35,7 @@ function Companies() {
       <Search search={search}/>
       {companies.length
       ? <div>{showCompanies()}</div>
-      : <h5>Sorry, no results were found.</h5>
+      : <SkeletonCards count={5}/>
       }
     </div>
   );
