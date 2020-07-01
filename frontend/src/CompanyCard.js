@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useHistory } from "react-router-dom";
 import "./CompanyCard.css";
 import default_company_img from "./default_company_img.png"

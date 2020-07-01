@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import JobCard from './JobCard';
 import { useParams, Redirect } from "react-router-dom";
 import JoblyApi from "./JoblyApi";
-import NotFound from "./NotFound";
 import UserContext from "./userContext";
 import Skeleton from "react-loading-skeleton";
 import SkeleonCards from "./SkeletonCards";
