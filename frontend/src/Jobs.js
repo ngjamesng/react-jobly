@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import Search from './Search.js'
 import JobCard from './JobCard'
 import JoblyApi from "./JoblyApi";
+import SkeletonCards from "./SkeletonCards";
 import UserContext from "./userContext";
 
 
@@ -49,7 +50,7 @@ function Jobs() {
       <Search search={search}/>
       {jobs.length
       ? <div>{showJobs()}</div>
-      : <h5>Sorry, no results were found.</h5>
+      : <SkeletonCards count={5} />
       }
     </div>
   );
