@@ -2,7 +2,7 @@ import axios from "axios";
 
 class JoblyApi {
   static async request(endpoint, paramsOrData = {}, verb = "get") {
-    const BASE_URL= process.env.REACT_APP_BASE_URL || "http://localhost:3000/"
+    const BASE_URL= process.env.REACT_APP_BASE_URL || "http://localhost:3001/"
     paramsOrData._token = localStorage.getItem('_token');
 
     // // for now, hardcode token for "testing"
