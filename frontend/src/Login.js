@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import JoblyApi from "./JoblyApi";
+import Alert from "./Alert";
+
 import { useHistory } from "react-router-dom";
 import UserContext from "./userContext";
 import "./Login.css";
@@ -11,6 +13,7 @@ function Login() {
   const [formData, setFormData] = useState(INITIALFORMDATA);
   const [formType, setFormType] = useState('login')
   const { setUser } = useContext(UserContext);
+  const [errors, setErrors] = useState(null);
   const history = useHistory();
   
   const handleSubmit = async (evt) => {
@@ -22,7 +25,11 @@ function Login() {
       setUser(response);
       localStorage.setItem('user', JSON.stringify(response));
     }
-    await getUserAndToken(formType);
+    try {
+      await getUserAndToken(formType);
+    } catch (err){
+      return setErrors(err);
+    }
     history.push("/");
   };
 
@@ -69,6 +76,7 @@ function Login() {
   return (
     <section className="container">
       <div className="Login-Form">
+      {errors?.length ? <Alert messages={errors}/> : null}
       <h1>Login/Signup</h1>
       <div className="btn-group btn-group-toggle" dataToggle="buttons">
         <button onClick={() => setFormType('login')} className="btn btn-primary">Login</button>
