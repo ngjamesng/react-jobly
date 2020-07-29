@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import JoblyApi from "./JoblyApi";
 import Alert from "./Alert";
+import { Spinner } from "react-bootstrap";
 
 import { useHistory } from "react-router-dom";
 import UserContext from "./userContext";
@@ -14,6 +15,7 @@ function Login() {
   const [formType, setFormType] = useState('login')
   const { setUser } = useContext(UserContext);
   const [errors, setErrors] = useState(null);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   
   const handleSubmit = async (evt) => {
@@ -26,9 +28,12 @@ function Login() {
       localStorage.setItem('user', JSON.stringify(response));
     }
     try {
+      setLoading(true);
       await getUserAndToken(formType);
     } catch (err){
       return setErrors(err);
+    } finally {
+      setLoading(false);
     }
     history.push("/");
   };
@@ -86,6 +91,7 @@ function Login() {
       <form onSubmit={handleSubmit} className="LoginRegister-Form">
         {formType === ('login') ? login() : signUp()}
         <button className="btn btn-primary">Submit</button>
+        {loading && <Spinner className="ml-5" animation="border" />}
       </form>
       </div>
     </section>
