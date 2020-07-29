@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import UserContext from "./userContext";
 import "./Login.css";
 const INITIALFORMDATA = {
-  'username':"", 'password':"", 'first_name':"", 'last_name':"", 'email':""
+  'username': "", 'password': "", 'first_name': "", 'last_name': "", 'email': ""
 }
 function Login() {
 
@@ -17,7 +17,7 @@ function Login() {
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
-  
+
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     const getUserAndToken = async (formType) => {
@@ -30,7 +30,7 @@ function Login() {
     try {
       setLoading(true);
       await getUserAndToken(formType);
-    } catch (err){
+    } catch (err) {
       return setErrors(err);
     } finally {
       setLoading(false);
@@ -57,7 +57,7 @@ function Login() {
           value={formData[key]}
           onChange={handleChange}
           className="form-control"
-          />
+        />
       </div>
     ))
   }
@@ -81,18 +81,21 @@ function Login() {
   return (
     <section className="container">
       <div className="Login-Form">
-      {errors?.length ? <Alert messages={errors}/> : null}
-      <h1>Login/Signup</h1>
-      <div className="btn-group btn-group-toggle" dataToggle="buttons">
-        <button onClick={() => setFormType('login')} className="btn btn-primary">Login</button>
-        <button onClick={() => setFormType('signUp')} className="btn btn-primary">Sign Up</button>
-      </div>
+        {errors?.length ? <Alert messages={errors} /> : null}
+        <h1>Login/Signup</h1>
+        <div className="btn-group btn-group-toggle" dataToggle="buttons">
+          <button onClick={() => setFormType('login')} className="btn btn-primary">Login</button>
+          <button onClick={() => setFormType('signUp')} className="btn btn-primary">Sign Up</button>
+        </div>
 
-      <form onSubmit={handleSubmit} className="LoginRegister-Form">
-        {formType === ('login') ? login() : signUp()}
-        <button className="btn btn-primary">Submit</button>
-        {loading && <Spinner className="ml-5" animation="border" />}
-      </form>
+        <form onSubmit={handleSubmit} className="LoginRegister-Form">
+          {formType === ('login') ? login() : signUp()}
+          <button className="btn btn-primary">
+            {loading
+              ? <Spinner animation="border" as="span" size="sm" role="status" />
+              : "Submit"}
+          </button>
+        </form>
       </div>
     </section>
   );
