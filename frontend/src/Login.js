@@ -12,7 +12,7 @@ const INITIALFORMDATA = {
 function Login() {
 
   const [formData, setFormData] = useState(INITIALFORMDATA);
-  const [formType, setFormType] = useState('login')
+  const [formType, setFormType] = useState('login');
   const { setUser } = useContext(UserContext);
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
