@@ -9,8 +9,7 @@ import SkeleonCards from "./SkeletonCards";
 function Company() {
   const { handle } = useParams();
   const [company, setCompany] = useState({ jobs: [] });
-  const { user } = useContext(UserContext);
-
+  const { user, setUser } = useContext(UserContext);
   
   useEffect(() => {
     async function getCompany() {
