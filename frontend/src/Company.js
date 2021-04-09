@@ -23,9 +23,21 @@ function Company() {
   
   if (!user) return <Redirect to="/login" />
 
+  const handleApply = (id) => {
+    const apply = async () => {
+      const message = await JoblyApi.applyToJob(id)
+      if (message) {
+        const updatedUser = await JoblyApi.getUser(user.username)
+        setUser(updatedUser)
+        localStorage.setItem('user', JSON.stringify(updatedUser))
+      }
+    }
+    apply()
+  }
+
   const showJobs = () => (
     company.jobs.map(job => (
-      <JobCard key={job.id} job={job} />
+      <JobCard key={job.id} job={job} handleApply={handleApply} />
     ))
   );
 
